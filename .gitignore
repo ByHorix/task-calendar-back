@@ -1,0 +1,23 @@
+# Папка node_modules
+node_modules/
+
+# Файлы логов
+logs/
+*.log
+
+# Локальные конфигурационные файлы
+.env
+.eslintrc.cjs
+package-lock.json
+
+# Кэши и временные файлы
+.cache/
+.tmp/
+
+# Файлы конфигурации редактора
+.idea/**/*
+.DS_Store
+
+# Файлы сборки
+/build/
+/dist/
