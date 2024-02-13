@@ -1,5 +1,6 @@
 import express from "express";
 import {addNewLabel, editLabelById, getAllLabels, removeLabelById} from "../db/Label";
+import {isValidHexColor} from "../utilities";
 
 export const getAll = async (req: express.Request, res: express.Response) => {
     try {
@@ -17,6 +18,12 @@ export const addNew = async (req: express.Request, res: express.Response) => {
     try {
         const {labelData} = req.body;
 
+        if (!isValidHexColor(labelData.color)) {
+            return res.status(400).send(JSON.stringify({
+                error: "Invalid HEX color format"
+            }))
+        }
+
         const newLabel = await addNewLabel(labelData);
 
         return res.status(200).json(newLabel);
@@ -29,8 +36,13 @@ export const edit = async (req: express.Request, res: express.Response) => {
     try {
         const {id, labelData} = req.body;
 
+        if (!isValidHexColor(labelData.color)) {
+            return res.status(400).send(JSON.stringify({
+                error: "Invalid HEX color format"
+            }));
+        }
+
         const editedLabel = await editLabelById(id, labelData);
-        console.log(editedLabel)
 
         return res.status(200).json(editedLabel);
     } catch (e) {
