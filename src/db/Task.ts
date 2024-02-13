@@ -18,8 +18,6 @@ export const getTasksForMonth = async (date: string) => {
 
     const startOfMonth = new Date(year, month, 1);
     const endOfMonth = new Date(year, month + 1, 1);
-    console.log(startOfMonth)
-    console.log(endOfMonth)
 
     const result = await TaskModel
         .find({
