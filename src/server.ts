@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import router from "./router";
 
 dotenv.config();
 const app = express();
@@ -31,3 +32,5 @@ mongoose.connect(DB_URL)
     .catch((error) => console.log(error));
 
 mongoose.connection.on('error', (error: Error) => console.log(error));
+
+app.use('/api', router());
